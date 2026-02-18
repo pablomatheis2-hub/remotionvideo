@@ -1,0 +1,130 @@
+{
+  "meta": { "fps": 30, "width": 1920, "height": 1080 },
+  "brand": {
+    "name": "Remotion Video Engine",
+    "tagline": "Automate your video pipeline."
+  },
+  "theme": {
+    "colors": {
+      "primary": "#f97316",
+      "secondary": "#ec4899",
+      "accent": "#facc15",
+      "background": "#0f172a",
+      "textPrimary": "#f8fafc",
+      "textSecondary": "#a1a1aa"
+    }
+  },
+  "audio": {
+    "backgroundMusic": { "src": "music/background.mp3", "volume": 0.25 }
+  },
+  "scenes": [
+    {
+      "type": "logoReveal",
+      "voiceover": "Remotion Video Engine."
+    },
+    {
+      "type": "timeline",
+      "title": "From config to video in three steps",
+      "steps": [
+        { "icon": "1️⃣", "label": "Define scenes in JSON", "detail": "Pick from twenty scene types" },
+        { "icon": "2️⃣", "label": "Generate voiceover", "detail": "AI syncs audio to each scene" },
+        { "icon": "3️⃣", "label": "Render and export", "detail": "Get a polished MP4 in minutes" }
+      ],
+      "voiceover": "Three steps. Define your scenes in JSON. Generate a voiceover. Render and export."
+    },
+    {
+      "type": "codeDemo",
+      "command": "npx remotion render Video --config remotion-engine-config.json",
+      "successMessage": "Rendered 1 video in 42s",
+      "details": [
+        "Output: out/video.mp4",
+        "Resolution: 1920x1080 • 30fps • Duration: 58s"
+      ],
+      "terminalTitle": "remotion-cli",
+      "promptPath": "~/remotionvideo",
+      "voiceover": "One command. Forty-two seconds. Your video is ready."
+    },
+    {
+      "type": "featureCards",
+      "title": "What makes it different",
+      "features": [
+        {
+          "icon": "🧩",
+          "title": "20+ scene types",
+          "description": "Kinetic text, charts, comparisons, timelines, code demos, and more."
+        },
+        {
+          "icon": "🎙️",
+          "title": "AI voiceover",
+          "description": "Automatic narration synced frame-perfectly to every scene."
+        },
+        {
+          "icon": "🎨",
+          "title": "Themeable",
+          "description": "Full control over colors, fonts, and branding in one config."
+        }
+      ],
+      "voiceover": "Twenty scene types. AI voiceover synced to every frame. Full theme control."
+    },
+    {
+      "type": "metricChart",
+      "title": "Performance at scale",
+      "metrics": [
+        { "label": "Scenes rendered", "value": 100, "displayValue": "100%" },
+        { "label": "Render speed", "value": 85, "displayValue": "2.4x realtime" },
+        { "label": "Config size", "value": 30, "displayValue": "~30 lines" }
+      ],
+      "voiceover": "One hundred percent of scenes rendered. Two-point-four-x realtime speed. About thirty lines of config."
+    },
+    {
+      "type": "stats",
+      "stats": [
+        { "value": 20, "suffix": "+", "label": "Scene Types" },
+        { "value": 0, "suffix": "", "label": "Video Code Needed" },
+        { "value": 30, "suffix": "fps", "label": "Smooth Output" }
+      ],
+      "voiceover": "Over twenty scene types. Zero video code needed. Thirty frames per second output."
+    },
+    {
+      "type": "quoteCarousel",
+      "quotes": [
+        { "text": "We replaced our entire video production workflow.", "author": "Dev Team Lead", "role": "Series A startup" },
+        { "text": "Config-driven video is the future.", "author": "Content Creator", "role": "YouTube educator" },
+        { "text": "From idea to published video in under five minutes.", "author": "Marketing Director", "role": "SaaS company" }
+      ],
+      "voiceover": "Teams are replacing their entire video workflow. Config-driven video is the future."
+    },
+    {
+      "type": "pricingTable",
+      "title": "Open source. Free forever.",
+      "tiers": [
+        {
+          "name": "Community",
+          "price": "$0",
+          "period": "forever",
+          "features": ["All 20+ scenes", "AI voiceover", "MP4 export", "Full theming"],
+          "highlighted": true
+        },
+        {
+          "name": "Cloud",
+          "price": "$49",
+          "period": "/mo",
+          "features": ["Everything in Community", "Cloud rendering", "API access", "Priority support"]
+        }
+      ],
+      "voiceover": "Community edition is free forever. Cloud rendering starts at forty-nine dollars a month."
+    },
+    {
+      "type": "impactWord",
+      "word": "AUTOMATE.",
+      "subtitle": "your video pipeline",
+      "voiceover": "Automate your video pipeline."
+    },
+    {
+      "type": "cta",
+      "headline": "Star us on GitHub",
+      "buttonText": "View Repository →",
+      "voiceover": "Star us on GitHub and start building today."
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "meta": { "fps": 30, "width": 1920, "height": 1080 },
+  "brand": { "name": "NexusCloud" },
+  "theme": {
+    "colors": {
+      "primary": "#7c3aed",
+      "secondary": "#2563eb",
+      "accent": "#06b6d4",
+      "background": "#0a0a0a",
+      "textPrimary": "#f1f5f9",
+      "textSecondary": "#94a3b8"
+    }
+  },
+  "scenes": [
+    {
+      "type": "logoReveal",
+      "durationInFrames": 70
+    },
+    {
+      "type": "kineticText",
+      "durationInFrames": 90,
+      "words": ["DEPLOY.", "SCALE.", "SECURE."]
+    },
+    {
+      "type": "heroTagline",
+      "durationInFrames": 105,
+      "headline": "Deploy at the speed of thought",
+      "subtitle": "The cloud platform that turns your code into globally distributed applications in seconds."
+    },
+    {
+      "type": "featureCards",
+      "durationInFrames": 135,
+      "title": "Built for modern teams",
+      "features": [
+        {
+          "icon": "\u26A1",
+          "title": "Speed",
+          "description": "Edge-first deployments with instant rollbacks and zero-downtime releases."
+        },
+        {
+          "icon": "\uD83D\uDCC8",
+          "title": "Scale",
+          "description": "Auto-scaling infrastructure that handles millions of requests effortlessly."
+        },
+        {
+          "icon": "\uD83D\uDEE1\uFE0F",
+          "title": "Security",
+          "description": "Enterprise-grade protection with built-in DDoS mitigation and SSL."
+        }
+      ]
+    },
+    {
+      "type": "frameworks",
+      "durationInFrames": 60,
+      "title": "Works with your stack",
+      "items": ["React", "Next.js", "Svelte", "Vue", "Astro"]
+    },
+    {
+      "type": "codeDemo",
+      "durationInFrames": 115,
+      "command": "npx nexus deploy --prod",
+      "successMessage": "Deployed successfully!",
+      "details": [
+        "Production: https://my-app.nexus.cloud",
+        "Regions: 190+ edge locations \u2022 Latency: 50ms avg"
+      ],
+      "terminalTitle": "nexus-cli",
+      "promptPath": "~/my-app"
+    },
+    {
+      "type": "globe",
+      "durationInFrames": 65,
+      "headline": "190+ Edge Regions Worldwide"
+    },
+    {
+      "type": "stats",
+      "durationInFrames": 90,
+      "stats": [
+        { "value": 99.99, "suffix": "%", "label": "Uptime SLA", "decimals": 2 },
+        { "value": 50, "suffix": "ms", "label": "Avg Response" },
+        { "value": 190, "suffix": "+", "label": "Edge Regions" }
+      ]
+    },
+    {
+      "type": "socialProof",
+      "durationInFrames": 60,
+      "headline": "Trusted by {count} developers",
+      "count": 50000,
+      "companies": ["Stripe", "Shopify", "Linear", "Vercel", "Notion"]
+    },
+    {
+      "type": "cta",
+      "durationInFrames": 110,
+      "headline": "Start building today",
+      "buttonText": "Get Started Free \u2192"
+    }
+  ]
+}

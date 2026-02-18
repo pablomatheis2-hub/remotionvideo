@@ -1,0 +1,25 @@
+{
+  "name": "remotionvideo",
+  "version": "1.0.0",
+  "description": "NexusCloud Cinematic Promotional Video",
+  "scripts": {
+    "dev": "npx remotion studio src/index.ts",
+    "build": "npx remotion render src/index.ts Video out/video.mp4",
+    "generate-voiceover": "npx tsx scripts/generate-voiceover.ts"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.423",
+    "@remotion/google-fonts": "4.0.423",
+    "@remotion/media-utils": "^4.0.424",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "dotenv": "^17.3.1",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "remotion": "4.0.423",
+    "typescript": "5.9.3"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0"
+  }
+}

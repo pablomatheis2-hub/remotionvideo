@@ -1,0 +1,84 @@
+{
+  "fps": 30,
+  "sceneDurations": [
+    {
+      "sceneIndex": 0,
+      "startTimeSec": 0,
+      "endTimeSec": 1.846,
+      "durationInFrames": 56
+    },
+    {
+      "sceneIndex": 1,
+      "startTimeSec": 1.846,
+      "endTimeSec": 4.598,
+      "durationInFrames": 83
+    },
+    {
+      "sceneIndex": 2,
+      "startTimeSec": 4.598,
+      "endTimeSec": 6.49,
+      "durationInFrames": 57
+    },
+    {
+      "sceneIndex": 3,
+      "startTimeSec": 6.49,
+      "endTimeSec": 11.633,
+      "durationInFrames": 155
+    },
+    {
+      "sceneIndex": 4,
+      "startTimeSec": 11.633,
+      "endTimeSec": 16.498,
+      "durationInFrames": 146
+    },
+    {
+      "sceneIndex": 5,
+      "startTimeSec": 16.498,
+      "endTimeSec": 18.867,
+      "durationInFrames": 72
+    },
+    {
+      "sceneIndex": 6,
+      "startTimeSec": 18.867,
+      "endTimeSec": 20.991,
+      "durationInFrames": 64
+    },
+    {
+      "sceneIndex": 7,
+      "startTimeSec": 20.991,
+      "endTimeSec": 26.355,
+      "durationInFrames": 161
+    },
+    {
+      "sceneIndex": 8,
+      "startTimeSec": 26.355,
+      "endTimeSec": 30.047,
+      "durationInFrames": 111
+    },
+    {
+      "sceneIndex": 9,
+      "startTimeSec": 30.047,
+      "endTimeSec": 35.817,
+      "durationInFrames": 174
+    },
+    {
+      "sceneIndex": 10,
+      "startTimeSec": 35.817,
+      "endTimeSec": 39.822,
+      "durationInFrames": 121
+    },
+    {
+      "sceneIndex": 11,
+      "startTimeSec": 39.822,
+      "endTimeSec": 41.575,
+      "durationInFrames": 53
+    },
+    {
+      "sceneIndex": 12,
+      "startTimeSec": 41.575,
+      "endTimeSec": 43.189,
+      "durationInFrames": 60
+    }
+  ],
+  "totalDurationInFrames": 1313
+}

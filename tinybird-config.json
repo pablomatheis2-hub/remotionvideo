@@ -1,0 +1,111 @@
+{
+  "meta": { "fps": 30, "width": 1920, "height": 1080 },
+  "brand": {
+    "name": "Remotion Video Engine",
+    "tagline": "JSON in. Video out."
+  },
+  "theme": {
+    "colors": {
+      "primary": "#7c3aed",
+      "secondary": "#2563eb",
+      "accent": "#06b6d4",
+      "background": "#0a0a0a",
+      "textPrimary": "#f1f5f9",
+      "textSecondary": "#94a3b8"
+    }
+  },
+  "audio": {
+    "backgroundMusic": { "src": "music/background.mp3", "volume": 0.25 }
+  },
+  "scenes": [
+    {
+      "type": "kineticText",
+      "words": ["VIDEO", "IS", "HARD."],
+      "voiceover": "Video is hard."
+    },
+    {
+      "type": "heroTagline",
+      "headline": "Editors are slow.",
+      "subtitle": "Templates are rigid.",
+      "voiceover": "Editors are slow. Templates are rigid."
+    },
+    {
+      "type": "impactWord",
+      "word": "NOT ANYMORE.",
+      "voiceover": "Not anymore."
+    },
+    {
+      "type": "heroTagline",
+      "headline": "Meet Remotion Video Engine.",
+      "subtitle": "JSON in. Cinematic video out.",
+      "voiceover": "Meet Remotion Video Engine. Write JSON, get cinematic video."
+    },
+    {
+      "type": "iconGrid",
+      "title": "How it works",
+      "icons": [
+        { "emoji": "\ud83d\udcdd", "label": "Write JSON" },
+        { "emoji": "\u2699\ufe0f", "label": "Engine renders" },
+        { "emoji": "\ud83c\udfac", "label": "Export MP4" }
+      ],
+      "voiceover": "Write a config. The engine renders it. Export your video."
+    },
+    {
+      "type": "impactWord",
+      "word": "20+",
+      "subtitle": "scene types",
+      "voiceover": "Over twenty scene types."
+    },
+    {
+      "type": "impactWord",
+      "word": "0",
+      "subtitle": "lines of video code",
+      "voiceover": "Zero lines of video code."
+    },
+    {
+      "type": "comparison",
+      "before": {
+        "label": "Traditional video",
+        "items": ["Hire an editor", "Days of revisions", "Expensive per video"]
+      },
+      "after": {
+        "label": "This engine",
+        "items": ["Write JSON", "Instant preview", "Free and open source"]
+      },
+      "voiceover": "No editors. No revisions. Just JSON and instant results."
+    },
+    {
+      "type": "splitImage",
+      "title": "AI-powered voiceover.",
+      "subtitle": "One continuous track. Zero gaps.",
+      "image": "\ud83c\udf99\ufe0f",
+      "imagePosition": "right",
+      "voiceover": "AI voiceover synced perfectly to every scene."
+    },
+    {
+      "type": "checklist",
+      "title": "Built-in features",
+      "items": ["Kinetic typography", "Animated charts", "Smooth transitions", "Background music ducking"],
+      "voiceover": "Kinetic text. Animated charts. Smooth transitions. All built in."
+    },
+    {
+      "type": "testimonial",
+      "quote": "We generate product videos in seconds, not days.",
+      "author": "Pablo Matheis",
+      "role": "Creator",
+      "avatarEmoji": "\ud83d\ude80",
+      "voiceover": "We generate product videos in seconds, not days."
+    },
+    {
+      "type": "kineticText",
+      "words": ["SHIP", "VIDEOS", "FAST."],
+      "voiceover": "Ship videos fast."
+    },
+    {
+      "type": "cta",
+      "headline": "Start building videos today",
+      "buttonText": "Get Started \u2192",
+      "voiceover": "Start building videos today."
+    }
+  ]
+}
