@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "npx remotion studio src/index.ts",
     "dev:web": "next dev --port 3000",
-    "build": "npx remotion render src/index.ts Video out/video.mp4",
-    "build:web": "next build",
+    "build": "next build",
+    "build:video": "npx remotion render src/index.ts Video out/video.mp4",
     "generate-voiceover": "npx tsx scripts/generate-voiceover.ts",
     "render-server": "npx tsx scripts/render-server.ts"
   },
@@ -14,7 +14,7 @@
     "@anthropic-ai/sdk": "^0.77.0",
     "@remotion/cli": "4.0.423",
     "@remotion/google-fonts": "4.0.423",
-    "@remotion/media-utils": "^4.0.424",
+    "@remotion/media-utils": "4.0.423",
     "@remotion/player": "^4.0.423",
     "@remotion/transitions": "^4.0.423",
     "@tailwindcss/postcss": "^4.2.0",

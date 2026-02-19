@@ -7,8 +7,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ```bash
 npm run dev              # Launch Remotion Studio with hot reload
 npm run dev:web          # Launch Next.js web app (localhost:3000) with hot reload
-npm run build            # Render final video to out/video.mp4 (1920x1080, 30fps, JPEG frames)
-npm run build:web        # Build Next.js app for production
+npm run build            # Build Next.js app for production (Vercel runs this)
+npm run build:video      # Render final video to out/video.mp4 (1920x1080, 30fps, JPEG frames)
 npm run generate-voiceover                    # Generate voiceover from tinybird-config.json (default)
 npx tsx scripts/generate-voiceover.ts <path>  # Generate voiceover from a specific config file
 ```
