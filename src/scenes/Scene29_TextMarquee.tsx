@@ -1,6 +1,7 @@
 import React from "react";
-import { useCurrentFrame, interpolate } from "remotion";
+import { useCurrentFrame } from "remotion";
 import { useTheme } from "../engine/ThemeContext";
+import { useSceneFade } from "../engine/useSceneFade";
 import type { TextMarqueeScene } from "../engine/types";
 
 type Props = Omit<TextMarqueeScene, "type">;
@@ -12,15 +13,7 @@ export const Scene29_TextMarquee: React.FC<Props> = ({
   const frame = useCurrentFrame();
   const { colors, gradients } = useTheme();
 
-  const opacityIn = interpolate(frame, [0, 12], [0, 1], {
-    extrapolateRight: "clamp",
-  });
-  const opacityOut = interpolate(
-    frame,
-    [durationInFrames - 15, durationInFrames],
-    [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
+  const opacity = useSceneFade({ durationInFrames, combine: "multiply" });
 
   // Create repeated text string for seamless scroll
   const repeatedText = Array(6).fill(words.join("  \u00B7  ")).join("  \u00B7  ");
@@ -37,7 +30,7 @@ export const Scene29_TextMarquee: React.FC<Props> = ({
         position: "absolute",
         inset: 0,
         overflow: "hidden",
-        opacity: opacityIn * opacityOut,
+        opacity,
       }}
     >
       {rows.map((row, i) => {

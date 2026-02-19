@@ -4,19 +4,30 @@
   "description": "NexusCloud Cinematic Promotional Video",
   "scripts": {
     "dev": "npx remotion studio src/index.ts",
+    "dev:web": "next dev --port 3000",
     "build": "npx remotion render src/index.ts Video out/video.mp4",
-    "generate-voiceover": "npx tsx scripts/generate-voiceover.ts"
+    "build:web": "next build",
+    "generate-voiceover": "npx tsx scripts/generate-voiceover.ts",
+    "render-server": "npx tsx scripts/render-server.ts"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.77.0",
     "@remotion/cli": "4.0.423",
     "@remotion/google-fonts": "4.0.423",
     "@remotion/media-utils": "^4.0.424",
+    "@remotion/player": "^4.0.423",
+    "@remotion/transitions": "^4.0.423",
+    "@tailwindcss/postcss": "^4.2.0",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
+    "cheerio": "^1.2.0",
     "dotenv": "^17.3.1",
+    "next": "^16.1.6",
+    "postcss": "^8.5.6",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "remotion": "4.0.423",
+    "tailwindcss": "^4.2.0",
     "typescript": "5.9.3"
   },
   "devDependencies": {

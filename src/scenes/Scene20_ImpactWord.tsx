@@ -1,6 +1,7 @@
 import React from "react";
 import { useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion";
 import { useTheme } from "../engine/ThemeContext";
+import { useSceneFade } from "../engine/useSceneFade";
 import type { ImpactWordScene } from "../engine/types";
 
 type Props = Omit<ImpactWordScene, "type">;
@@ -30,12 +31,7 @@ export const Scene20_ImpactWord: React.FC<Props> = ({
   });
 
   // Quick exit
-  const exitOpacity = interpolate(
-    frame,
-    [durationInFrames - 6, durationInFrames],
-    [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
+  const exitOpacity = useSceneFade({ durationInFrames, fadeInFrames: 0, fadeOutFrames: 6 });
 
   // Subtitle
   const subtitleProgress = spring({

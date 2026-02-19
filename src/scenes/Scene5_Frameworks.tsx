@@ -1,6 +1,7 @@
 import React from "react";
 import { useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion";
 import { useTheme } from "../engine/ThemeContext";
+import { useSceneFade } from "../engine/useSceneFade";
 import type { FrameworksScene } from "../engine/types";
 
 type Props = Omit<FrameworksScene, "type">;
@@ -18,12 +19,7 @@ export const Scene5_Frameworks: React.FC<Props> = ({
     extrapolateRight: "clamp",
   });
 
-  const fadeOut = interpolate(
-    frame,
-    [durationInFrames - 12, durationInFrames],
-    [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
+  const fadeOut = useSceneFade({ durationInFrames, fadeInFrames: 0, fadeOutFrames: 12 });
 
   return (
     <div

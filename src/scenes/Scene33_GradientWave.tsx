@@ -1,6 +1,7 @@
 import React from "react";
-import { useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion";
+import { useCurrentFrame, useVideoConfig, spring } from "remotion";
 import { useTheme } from "../engine/ThemeContext";
+import { useSceneFade } from "../engine/useSceneFade";
 import type { GradientWaveScene } from "../engine/types";
 
 type Props = Omit<GradientWaveScene, "type">;
@@ -14,15 +15,7 @@ export const Scene33_GradientWave: React.FC<Props> = ({
   const { fps } = useVideoConfig();
   const { colors } = useTheme();
 
-  const opacityIn = interpolate(frame, [0, 12], [0, 1], {
-    extrapolateRight: "clamp",
-  });
-  const opacityOut = interpolate(
-    frame,
-    [durationInFrames - 15, durationInFrames],
-    [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
+  const opacity = useSceneFade({ durationInFrames, combine: "multiply" });
 
   const textSpring = spring({
     frame: frame - 8,
@@ -44,7 +37,7 @@ export const Scene33_GradientWave: React.FC<Props> = ({
       style={{
         position: "absolute",
         inset: 0,
-        opacity: opacityIn * opacityOut,
+        opacity,
       }}
     >
       {/* Animated gradient background */}

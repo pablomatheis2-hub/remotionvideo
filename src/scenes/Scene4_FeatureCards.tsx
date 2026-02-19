@@ -2,6 +2,7 @@ import React from "react";
 import { useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion";
 import { GlassCard } from "../components/GlassCard";
 import { useTheme } from "../engine/ThemeContext";
+import { useSceneFade } from "../engine/useSceneFade";
 import type { FeatureCardsScene } from "../engine/types";
 
 type Props = Omit<FeatureCardsScene, "type">;
@@ -15,16 +16,7 @@ export const Scene4_FeatureCards: React.FC<Props> = ({
   const { fps } = useVideoConfig();
   const { colors } = useTheme();
 
-  const opacityIn = interpolate(frame, [0, 15], [0, 1], {
-    extrapolateRight: "clamp",
-  });
-  const opacityOut = interpolate(
-    frame,
-    [durationInFrames - 25, durationInFrames],
-    [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
-  const opacity = Math.min(opacityIn, opacityOut);
+  const opacity = useSceneFade({ durationInFrames, fadeInFrames: 15, fadeOutFrames: 25 });
 
   return (
     <div

@@ -1,6 +1,7 @@
 import React from "react";
-import { useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion";
+import { useCurrentFrame, useVideoConfig, spring } from "remotion";
 import { useTheme } from "../engine/ThemeContext";
+import { useSceneFade } from "../engine/useSceneFade";
 import type { BarChartScene } from "../engine/types";
 
 type Props = Omit<BarChartScene, "type">;
@@ -14,15 +15,7 @@ export const Scene24_BarChart: React.FC<Props> = ({
   const { fps } = useVideoConfig();
   const { colors, gradients } = useTheme();
 
-  const opacityIn = interpolate(frame, [0, 12], [0, 1], {
-    extrapolateRight: "clamp",
-  });
-  const opacityOut = interpolate(
-    frame,
-    [durationInFrames - 15, durationInFrames],
-    [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
+  const opacity = useSceneFade({ durationInFrames, combine: "multiply" });
 
   const titleSpring = spring({
     frame: frame - 5,
@@ -43,7 +36,7 @@ export const Scene24_BarChart: React.FC<Props> = ({
         alignItems: "center",
         justifyContent: "center",
         gap: 40,
-        opacity: opacityIn * opacityOut,
+        opacity,
         padding: "0 100px",
       }}
     >

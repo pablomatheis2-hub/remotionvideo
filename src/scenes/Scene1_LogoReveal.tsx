@@ -1,8 +1,9 @@
 import React from "react";
-import { useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion";
+import { useCurrentFrame, useVideoConfig, spring } from "remotion";
 import { BrandLogo } from "../components/BrandLogo";
 import { GlowEffect } from "../components/GlowEffect";
 import { useTheme } from "../engine/ThemeContext";
+import { useSceneFade } from "../engine/useSceneFade";
 import type { LogoRevealScene } from "../engine/types";
 
 type Props = Omit<LogoRevealScene, "type">;
@@ -19,18 +20,7 @@ export const Scene1_LogoReveal: React.FC<Props> = ({ durationInFrames }) => {
     delay: 8,
   });
 
-  const opacityIn = interpolate(frame, [0, 15], [0, 1], {
-    extrapolateRight: "clamp",
-  });
-
-  const opacityOut = interpolate(
-    frame,
-    [durationInFrames - 15, durationInFrames],
-    [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
-
-  const opacity = Math.min(opacityIn, opacityOut);
+  const opacity = useSceneFade({ durationInFrames, fadeInFrames: 15 });
   const glowPulse = 0.3 + Math.sin(frame * 0.06) * 0.15;
 
   return (

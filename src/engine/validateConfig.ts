@@ -1,3 +1,13 @@
+const VALID_TRANSITION_TYPES = new Set([
+  "crossfade",
+  "slide",
+  "wipe",
+  "clockWipe",
+  "fade",
+  "flip",
+  "none",
+]);
+
 // ── Known scene types and their required fields ──
 
 const VALID_SCENE_TYPES = new Set([
@@ -145,6 +155,18 @@ export function validateConfig(
     for (const field of required) {
       if (scene[field] === undefined || scene[field] === null) {
         errors.push(`${sceneLabel} (${scene.type}): missing required field "${field}"`);
+      }
+    }
+
+    // Transition validation
+    if (scene.transition && typeof scene.transition === "object") {
+      const transition = scene.transition as Record<string, unknown>;
+      if (transition.type && typeof transition.type === "string") {
+        if (!VALID_TRANSITION_TYPES.has(transition.type)) {
+          warnings.push(
+            `${sceneLabel} (${scene.type}): unknown transition type "${transition.type}". Valid types: ${[...VALID_TRANSITION_TYPES].join(", ")}`
+          );
+        }
       }
     }
   }

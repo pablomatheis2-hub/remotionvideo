@@ -1,6 +1,7 @@
 import React from "react";
 import { useCurrentFrame, interpolate } from "remotion";
 import { useTheme } from "../engine/ThemeContext";
+import { useSceneFade } from "../engine/useSceneFade";
 import type { QuoteCarouselScene } from "../engine/types";
 
 type Props = Omit<QuoteCarouselScene, "type">;
@@ -12,16 +13,7 @@ export const Scene19_QuoteCarousel: React.FC<Props> = ({
   const frame = useCurrentFrame();
   const { colors, gradients } = useTheme();
 
-  const opacityIn = interpolate(frame, [0, 8], [0, 1], {
-    extrapolateRight: "clamp",
-  });
-  const opacityOut = interpolate(
-    frame,
-    [durationInFrames - 12, durationInFrames],
-    [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
-  const sceneFade = Math.min(opacityIn, opacityOut);
+  const sceneFade = useSceneFade({ durationInFrames, fadeInFrames: 8, fadeOutFrames: 12 });
 
   const count = quotes.length;
   if (count === 0) return null;

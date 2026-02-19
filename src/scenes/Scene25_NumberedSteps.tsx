@@ -1,6 +1,7 @@
 import React from "react";
-import { useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion";
+import { useCurrentFrame, useVideoConfig, spring } from "remotion";
 import { useTheme } from "../engine/ThemeContext";
+import { useSceneFade } from "../engine/useSceneFade";
 import type { NumberedStepsScene } from "../engine/types";
 
 type Props = Omit<NumberedStepsScene, "type">;
@@ -14,15 +15,7 @@ export const Scene25_NumberedSteps: React.FC<Props> = ({
   const { fps } = useVideoConfig();
   const { colors, gradients } = useTheme();
 
-  const opacityIn = interpolate(frame, [0, 12], [0, 1], {
-    extrapolateRight: "clamp",
-  });
-  const opacityOut = interpolate(
-    frame,
-    [durationInFrames - 15, durationInFrames],
-    [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
+  const opacity = useSceneFade({ durationInFrames, combine: "multiply" });
 
   const titleSpring = spring({
     frame: frame - 5,
@@ -40,7 +33,7 @@ export const Scene25_NumberedSteps: React.FC<Props> = ({
         alignItems: "center",
         justifyContent: "center",
         gap: 44,
-        opacity: opacityIn * opacityOut,
+        opacity,
         padding: "0 100px",
       }}
     >

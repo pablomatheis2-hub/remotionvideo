@@ -1,7 +1,8 @@
 import React from "react";
-import { useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion";
+import { useCurrentFrame, useVideoConfig, spring } from "remotion";
 import { AnimatedCounter } from "../components/AnimatedCounter";
 import { useTheme } from "../engine/ThemeContext";
+import { useSceneFade } from "../engine/useSceneFade";
 import type { StatsScene } from "../engine/types";
 
 type Props = Omit<StatsScene, "type">;
@@ -11,16 +12,7 @@ export const Scene8_Stats: React.FC<Props> = ({ durationInFrames, stats }) => {
   const { fps } = useVideoConfig();
   const { colors, gradients } = useTheme();
 
-  const opacityIn = interpolate(frame, [0, 12], [0, 1], {
-    extrapolateRight: "clamp",
-  });
-  const opacityOut = interpolate(
-    frame,
-    [durationInFrames - 25, durationInFrames],
-    [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
-  const opacity = Math.min(opacityIn, opacityOut);
+  const opacity = useSceneFade({ durationInFrames, fadeOutFrames: 25 });
 
   return (
     <div

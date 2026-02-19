@@ -1,5 +1,6 @@
 import React from "react";
-import { AbsoluteFill, Sequence } from "remotion";
+import { AbsoluteFill } from "remotion";
+import { TransitionSeries } from "@remotion/transitions";
 import { loadFont } from "@remotion/google-fonts/Inter";
 import { GradientBackground } from "../components/GradientBackground";
 import { DotGrid } from "../components/DotGrid";
@@ -8,6 +9,7 @@ import { resolveConfig } from "./resolveConfig";
 import { sceneRegistry } from "./registry";
 import { BackgroundMusic } from "./BackgroundMusic";
 import { ContinuousVoiceover } from "./ContinuousVoiceover";
+import { getTransitionConfig } from "./transitions";
 import type { VideoConfig, VoiceoverTimingData } from "./types";
 
 interface Props {
@@ -26,12 +28,44 @@ export const VideoComposition: React.FC<Props> = ({
     subsets: ["latin"],
   });
 
-  // Accumulate start frames from sequential durations
-  let currentFrame = 0;
-  const scenesWithStart = resolved.scenes.map((scene) => {
-    const from = currentFrame;
-    currentFrame += scene.durationInFrames;
-    return { ...scene, from };
+  const { width, height } = resolved.meta;
+
+  // Build the TransitionSeries children: interleaved Sequences and Transitions
+  const transitionSeriesChildren: React.ReactNode[] = [];
+
+  resolved.scenes.forEach((scene, i) => {
+    const { type, ...props } = scene;
+    const Component = sceneRegistry[type];
+    if (!Component) return;
+
+    // Add the scene sequence
+    transitionSeriesChildren.push(
+      <TransitionSeries.Sequence
+        key={`scene-${type}-${i}`}
+        durationInFrames={scene.durationInFrames}
+      >
+        <Component {...props} />
+      </TransitionSeries.Sequence>
+    );
+
+    // Add transition after this scene (except for the last scene)
+    if (i < resolved.scenes.length - 1) {
+      const transitionConfig = getTransitionConfig(
+        scene.transition,
+        width,
+        height
+      );
+
+      if (transitionConfig) {
+        transitionSeriesChildren.push(
+          <TransitionSeries.Transition
+            key={`transition-${i}`}
+            presentation={transitionConfig.presentation}
+            timing={transitionConfig.timing}
+          />
+        );
+      }
+    }
   });
 
   return (
@@ -53,21 +87,9 @@ export const VideoComposition: React.FC<Props> = ({
           <ContinuousVoiceover volume={resolved.audio.voiceover.volume} />
         )}
 
-        {scenesWithStart.map((scene, i) => {
-          const { type, from, ...props } = scene;
-          const Component = sceneRegistry[type];
-          if (!Component) return null;
-
-          return (
-            <Sequence
-              key={`${type}-${i}`}
-              from={from}
-              durationInFrames={scene.durationInFrames}
-            >
-              <Component {...props} />
-            </Sequence>
-          );
-        })}
+        <TransitionSeries>
+          {transitionSeriesChildren}
+        </TransitionSeries>
       </AbsoluteFill>
     </ThemeProvider>
   );

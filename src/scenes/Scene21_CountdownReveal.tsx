@@ -1,6 +1,7 @@
 import React from "react";
 import { useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion";
 import { useTheme } from "../engine/ThemeContext";
+import { useSceneFade } from "../engine/useSceneFade";
 import type { CountdownRevealScene } from "../engine/types";
 
 type Props = Omit<CountdownRevealScene, "type">;
@@ -13,12 +14,7 @@ export const Scene21_CountdownReveal: React.FC<Props> = ({
   const { fps } = useVideoConfig();
   const { colors, gradients } = useTheme();
 
-  const opacityOut = interpolate(
-    frame,
-    [durationInFrames - 15, durationInFrames],
-    [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
+  const opacityOut = useSceneFade({ durationInFrames, fadeInFrames: 0 });
 
   const counts = [3, 2, 1];
   const countDuration = 20; // frames per number

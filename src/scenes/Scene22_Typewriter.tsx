@@ -1,6 +1,7 @@
 import React from "react";
-import { useCurrentFrame, interpolate } from "remotion";
+import { useCurrentFrame } from "remotion";
 import { useTheme } from "../engine/ThemeContext";
+import { useSceneFade } from "../engine/useSceneFade";
 import type { TypewriterScene } from "../engine/types";
 
 type Props = Omit<TypewriterScene, "type">;
@@ -12,15 +13,7 @@ export const Scene22_Typewriter: React.FC<Props> = ({
   const frame = useCurrentFrame();
   const { colors } = useTheme();
 
-  const opacityIn = interpolate(frame, [0, 8], [0, 1], {
-    extrapolateRight: "clamp",
-  });
-  const opacityOut = interpolate(
-    frame,
-    [durationInFrames - 15, durationInFrames],
-    [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
+  const opacity = useSceneFade({ durationInFrames, fadeInFrames: 8, combine: "multiply" });
 
   // Type 1 character every 2 frames, starting at frame 8
   const typingStart = 8;
@@ -41,7 +34,7 @@ export const Scene22_Typewriter: React.FC<Props> = ({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        opacity: opacityIn * opacityOut,
+        opacity,
         padding: "0 120px",
       }}
     >

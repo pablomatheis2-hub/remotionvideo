@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import "dotenv/config";
+import { MIN_VISUAL_FRAMES, DEFAULT_MIN_FRAMES } from "../src/engine/sceneConstants";
 
 interface Scene {
   type: string;
@@ -24,32 +25,6 @@ interface ElevenLabsTimestampResponse {
     characters: string[];
   };
 }
-
-// Minimum visual frames per scene type (must match estimateDurations.ts)
-const MIN_VISUAL_FRAMES: Record<string, number> = {
-  logoReveal: 60,
-  kineticText: 45,
-  heroTagline: 60,
-  featureCards: 75,
-  frameworks: 60,
-  codeDemo: 90,
-  globe: 60,
-  stats: 75,
-  socialProof: 60,
-  cta: 60,
-  timeline: 75,
-  testimonial: 75,
-  comparison: 75,
-  metricChart: 75,
-  checklist: 60,
-  splitImage: 60,
-  iconGrid: 60,
-  pricingTable: 90,
-  quoteCarousel: 90,
-  impactWord: 45,
-};
-
-const DEFAULT_MIN_FRAMES = 60;
 const DEFAULT_VOICE_ID = "21m00Tcm4TlvDq8ikWAM"; // Rachel
 const SEPARATOR = " ... ";
 

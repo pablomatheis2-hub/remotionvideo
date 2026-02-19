@@ -3,6 +3,7 @@ import { useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion";
 import { GlassCard } from "../components/GlassCard";
 import { AnimatedText } from "../components/AnimatedText";
 import { useTheme } from "../engine/ThemeContext";
+import { useSceneFade } from "../engine/useSceneFade";
 import type { TestimonialScene } from "../engine/types";
 
 type Props = Omit<TestimonialScene, "type">;
@@ -18,16 +19,7 @@ export const Scene12_Testimonial: React.FC<Props> = ({
   const { fps } = useVideoConfig();
   const { colors, gradients } = useTheme();
 
-  const opacityIn = interpolate(frame, [0, 8], [0, 1], {
-    extrapolateRight: "clamp",
-  });
-  const opacityOut = interpolate(
-    frame,
-    [durationInFrames - 12, durationInFrames],
-    [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
-  const opacity = Math.min(opacityIn, opacityOut);
+  const opacity = useSceneFade({ durationInFrames, fadeInFrames: 8, fadeOutFrames: 12 });
 
   const cardSpring = spring({
     frame: frame - 3,

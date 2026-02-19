@@ -1,6 +1,7 @@
 import React from "react";
 import { useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion";
 import { useTheme } from "../engine/ThemeContext";
+import { useSceneFade } from "../engine/useSceneFade";
 import type { WordCloudScene } from "../engine/types";
 
 type Props = Omit<WordCloudScene, "type">;
@@ -19,15 +20,7 @@ export const Scene32_WordCloud: React.FC<Props> = ({
   const { fps } = useVideoConfig();
   const { colors, gradients } = useTheme();
 
-  const opacityIn = interpolate(frame, [0, 12], [0, 1], {
-    extrapolateRight: "clamp",
-  });
-  const opacityOut = interpolate(
-    frame,
-    [durationInFrames - 15, durationInFrames],
-    [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
+  const opacity = useSceneFade({ durationInFrames, combine: "multiply" });
 
   // Pre-calculate positions for each word
   const positions = words.map((_, i) => ({
@@ -43,7 +36,7 @@ export const Scene32_WordCloud: React.FC<Props> = ({
       style={{
         position: "absolute",
         inset: 0,
-        opacity: opacityIn * opacityOut,
+        opacity,
       }}
     >
       {words.map((word, i) => {

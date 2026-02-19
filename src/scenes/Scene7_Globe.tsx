@@ -1,6 +1,7 @@
 import React from "react";
 import { useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion";
 import { useTheme } from "../engine/ThemeContext";
+import { useSceneFade } from "../engine/useSceneFade";
 import type { GlobeScene } from "../engine/types";
 
 const edgeNodes = [
@@ -26,12 +27,7 @@ export const Scene7_Globe: React.FC<Props> = ({ durationInFrames, headline }) =>
     delay: 3,
   });
 
-  const fadeOut = interpolate(
-    frame,
-    [durationInFrames - 15, durationInFrames],
-    [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
+  const fadeOut = useSceneFade({ durationInFrames, fadeInFrames: 0, fadeOutFrames: 15 });
 
   const textOpacity = interpolate(frame, [15, 25], [0, 1], {
     extrapolateLeft: "clamp",

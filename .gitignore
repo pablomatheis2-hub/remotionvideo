@@ -5,3 +5,13 @@ out/
 *.mp3
 !public/music/*.mp3
 !public/voiceover/*.mp3
+
+# Rendered videos
+renders/
+
+# Build artifacts
+tsconfig.tsbuildinfo
+
+# Next.js
+.next/
+next-env.d.ts

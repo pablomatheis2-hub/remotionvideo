@@ -1,6 +1,7 @@
 import React from "react";
 import { useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion";
 import { useTheme } from "../engine/ThemeContext";
+import { useSceneFade } from "../engine/useSceneFade";
 import type { StackRevealScene } from "../engine/types";
 
 type Props = Omit<StackRevealScene, "type">;
@@ -13,15 +14,7 @@ export const Scene34_StackReveal: React.FC<Props> = ({
   const { fps } = useVideoConfig();
   const { colors, gradients } = useTheme();
 
-  const opacityIn = interpolate(frame, [0, 12], [0, 1], {
-    extrapolateRight: "clamp",
-  });
-  const opacityOut = interpolate(
-    frame,
-    [durationInFrames - 15, durationInFrames],
-    [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
+  const opacity = useSceneFade({ durationInFrames, combine: "multiply" });
 
   return (
     <div
@@ -31,7 +24,7 @@ export const Scene34_StackReveal: React.FC<Props> = ({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        opacity: opacityIn * opacityOut,
+        opacity,
       }}
     >
       <div

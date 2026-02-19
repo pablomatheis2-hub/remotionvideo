@@ -2,6 +2,7 @@ import React from "react";
 import { Composition, staticFile } from "remotion";
 import { VideoComposition } from "./engine/VideoComposition";
 import { resolveConfig } from "./engine/resolveConfig";
+import { getTransitionOverlap } from "./engine/transitions";
 import type { VideoConfig, VoiceoverTimingData } from "./engine/types";
 import defaultConfig from "../remotion-engine-config.json";
 
@@ -26,10 +27,15 @@ export const Root: React.FC = () => {
         const config = (props as { config: VideoConfig }).config;
         const timingData = await loadTimingData();
         const resolved = resolveConfig(config, timingData);
-        const totalDuration = resolved.scenes.reduce(
+        const sceneDurationSum = resolved.scenes.reduce(
           (sum, s) => sum + s.durationInFrames,
           0
         );
+        // Subtract transition overlaps (each transition overlaps two scenes)
+        const transitionOverlapSum = resolved.scenes
+          .slice(0, -1) // last scene has no outgoing transition
+          .reduce((sum, s) => sum + getTransitionOverlap(s.transition), 0);
+        const totalDuration = sceneDurationSum - transitionOverlapSum;
         return {
           durationInFrames: totalDuration,
           fps: resolved.meta.fps,

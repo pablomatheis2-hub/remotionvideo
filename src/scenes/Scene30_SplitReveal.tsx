@@ -1,6 +1,7 @@
 import React from "react";
 import { useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion";
 import { useTheme } from "../engine/ThemeContext";
+import { useSceneFade } from "../engine/useSceneFade";
 import type { SplitRevealScene } from "../engine/types";
 
 type Props = Omit<SplitRevealScene, "type">;
@@ -14,12 +15,7 @@ export const Scene30_SplitReveal: React.FC<Props> = ({
   const { fps } = useVideoConfig();
   const { colors, gradients } = useTheme();
 
-  const opacityOut = interpolate(
-    frame,
-    [durationInFrames - 12, durationInFrames],
-    [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
+  const opacityOut = useSceneFade({ durationInFrames, fadeInFrames: 0, fadeOutFrames: 12 });
 
   // Panels slide apart starting at frame 10
   const splitProgress = spring({

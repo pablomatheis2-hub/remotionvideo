@@ -1,6 +1,7 @@
 import React from "react";
 import { useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion";
 import { useTheme } from "../engine/ThemeContext";
+import { useSceneFade } from "../engine/useSceneFade";
 import type { FullscreenQuoteScene } from "../engine/types";
 
 type Props = Omit<FullscreenQuoteScene, "type">;
@@ -26,12 +27,7 @@ export const Scene26_FullscreenQuote: React.FC<Props> = ({
     config: { damping: 18, stiffness: 100 },
   });
 
-  const opacityOut = interpolate(
-    frame,
-    [durationInFrames - 15, durationInFrames],
-    [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
+  const opacityOut = useSceneFade({ durationInFrames, fadeInFrames: 0 });
 
   const scale = interpolate(quoteSpring, [0, 1], [0.95, 1]);
 

@@ -3,6 +3,7 @@ import { useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion";
 import { TerminalMockup } from "../components/TerminalMockup";
 import { TypewriterText } from "../components/TypewriterText";
 import { useTheme } from "../engine/ThemeContext";
+import { useSceneFade } from "../engine/useSceneFade";
 import type { CodeDemoScene } from "../engine/types";
 
 type Props = Omit<CodeDemoScene, "type">;
@@ -26,12 +27,7 @@ export const Scene6_CodeEditor: React.FC<Props> = ({
     delay: 3,
   });
 
-  const opacityOut = interpolate(
-    frame,
-    [durationInFrames - 25, durationInFrames],
-    [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
+  const opacityOut = useSceneFade({ durationInFrames, fadeInFrames: 0, fadeOutFrames: 25 });
 
   const commandDone = frame > 12 + command.length / 0.7;
 

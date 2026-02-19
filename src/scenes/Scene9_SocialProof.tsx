@@ -7,6 +7,7 @@ import {
   Easing,
 } from "remotion";
 import { useTheme } from "../engine/ThemeContext";
+import { useSceneFade } from "../engine/useSceneFade";
 import type { SocialProofScene } from "../engine/types";
 
 type Props = Omit<SocialProofScene, "type">;
@@ -28,12 +29,7 @@ export const Scene9_SocialProof: React.FC<Props> = ({
     delay: 3,
   });
 
-  const fadeOut = interpolate(
-    frame,
-    [durationInFrames - 12, durationInFrames],
-    [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
+  const fadeOut = useSceneFade({ durationInFrames, fadeInFrames: 0, fadeOutFrames: 12 });
 
   const counterProgress = interpolate(frame, [5, 35], [0, 1], {
     extrapolateLeft: "clamp",

@@ -1,7 +1,8 @@
 import React from "react";
-import { useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion";
+import { useCurrentFrame, useVideoConfig, spring } from "remotion";
 import { BrandLogo } from "../components/BrandLogo";
 import { useTheme } from "../engine/ThemeContext";
+import { useSceneFade } from "../engine/useSceneFade";
 import type { CtaScene } from "../engine/types";
 
 type Props = Omit<CtaScene, "type">;
@@ -34,12 +35,7 @@ export const Scene10_CTA: React.FC<Props> = ({
     config: { damping: 20, stiffness: 100 },
   });
 
-  const fadeToBlack = interpolate(
-    frame,
-    [durationInFrames - 12, durationInFrames],
-    [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
+  const fadeToBlack = useSceneFade({ durationInFrames, fadeInFrames: 0, fadeOutFrames: 12 });
 
   return (
     <div

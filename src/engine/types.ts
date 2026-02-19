@@ -13,11 +13,29 @@ export interface VoiceoverTimingData {
   totalDurationInFrames: number;
 }
 
+// ── Transition config ──
+
+export type TransitionType =
+  | "crossfade"
+  | "slide"
+  | "wipe"
+  | "clockWipe"
+  | "fade"
+  | "flip"
+  | "none";
+
+export interface TransitionConfig {
+  type: TransitionType;
+  durationInFrames?: number;
+  timing?: "spring" | "linear";
+}
+
 // ── Scene config variants (discriminated union on `type`) ──
 
 interface SceneBase {
   durationInFrames: number;
   voiceover: string;
+  transition?: TransitionConfig;
 }
 
 export interface LogoRevealScene extends SceneBase {
